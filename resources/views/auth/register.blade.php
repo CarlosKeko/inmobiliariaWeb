@@ -4,7 +4,7 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4" />
+        {{-- <x-jet-validation-errors class="mb-4" /> --}}
 
         {{-- <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="alert alert-info text-center" role="alert">
-                      ¿Ya estás registrado? Por favor <a href="#" class="alert-link">inicia sesión</a> y si eres un nuevo usuario completa el siguiente Formulario y crea una cuenta.
+                      ¿Ya estás registrado? Por favor <a href="{{ route('login') }}" class="alert-link">inicia sesión</a> y si eres un nuevo usuario completa el siguiente Formulario y crea una cuenta.
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -93,6 +93,15 @@
         
               <br>
             @enderror
+
+            @error('password')
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong>¡Error!</strong> {{$message}}
+            </div>
+      
+            <br>
+          @enderror
         
             <form action="{{route("register")}}" method="POST">
                 @csrf
@@ -101,8 +110,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                        <label for="nombreagente">Nombre del Agente Inmobiliario *</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del Agente" required value="{{ old('nombreagente') }}">
+                        <label for="name">Nombre del Agente Inmobiliario *</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del Agente" required value="{{ old('name') }}">
                         <input type="text" class="form-control" name="nombreempresa" id="nombreempresa" placeholder="Nombre de la empresa" required value="{{ old('nombreempresa') }}">
                       </div>
                       <div class="form-group">
@@ -128,7 +137,7 @@
                       </div>
                       <div class="form-group">
                         <label for="inmuebles">Lista de inmuebles</label>
-                        <input type="text" class="form-control" name="inmuebles" id="inmuebles" placeholder="https://www.ejemplo.com/listado" required value="{{ old('inmuebles') }}">
+                        <input type="text" class="form-control" name="inmuebles" id="inmuebles" placeholder="https://www.ejemplo.com/listado" value="{{ old('inmuebles') }}">
                       </div>
                       <div class="form-group">
                         <label for="idiomas">Idiomas *</label><br>
@@ -205,12 +214,12 @@
                       </div>
 
                       <div class="mt-4">
-                        <x-jet-label for="password" value="{{ __('Password') }}" />
+                        <x-jet-label for="password" value="{{ __('Contraseña *') }}" />
                         <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
                     </div>
 
                     <div class="mt-4">
-                        <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                        <x-jet-label for="password_confirmation" value="{{ __('Confirmar contraseña *') }}" />
                         <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
                     </div>
 
@@ -224,7 +233,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                        <label for="email">Introduce tu correo electrónico para registrarte y crear tu cuenta</label>
+                        <label for="email">Introduce tu correo electrónico para registrarte y crear tu cuenta *</label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="" required value="{{ old('email') }}">
         
                       </div>
