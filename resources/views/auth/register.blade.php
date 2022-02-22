@@ -120,7 +120,7 @@
                       <div class="form-group">
                         <label for="telefonomovil">Teléfono *</label>
                         <input type="tel" class="form-control" name="telefonomovil" id="telefonomovil" placeholder="Teléfono móvil" required value="{{ old('telefonomovil') }}">
-                        <input type="tel" class="form-control" name="telefonofijo" id="telefonofijo" placeholder="Teléfono fijo" required value="{{ old('telefonofijo') }}">
+                        <input type="tel" class="form-control" name="telefonofijo" id="telefonofijo" placeholder="Teléfono fijo" value="{{ old('telefonofijo') }}">
                       </div>
                       <div class="form-group">
                         <label for="web">Página web</label>

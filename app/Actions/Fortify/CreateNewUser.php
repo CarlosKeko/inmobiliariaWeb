@@ -2,6 +2,9 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Especialidad;
+use App\Models\Idioma;
+use App\Models\Servicio;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -27,7 +30,7 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
@@ -52,5 +55,34 @@ class CreateNewUser implements CreatesNewUsers
             'serviciosDescripcion' => $input['serviciostexto']
 
         ]);
+
+        if ($user) {
+            foreach($input['idiomas'] as $idioma) {
+                $idiomaBuscado = Idioma::where("nombre", "=", strtolower($idioma))->get();
+                if (count($idiomaBuscado) >= 1) {
+                    $user->idiomas()->attach($idiomaBuscado[0]);
+
+                }
+            }
+
+            foreach($input['servicios'] as $servicio) {
+                $servicioBuscado = Servicio::where("nombre", "=", strtolower($servicio))->get();
+                if (count($servicioBuscado) >= 1) {
+                    $user->servicios()->attach($servicioBuscado[0]);
+
+                }
+            }
+
+            foreach($input['especialidades'] as $especialidad) {
+                $especialidadBuscada = Especialidad::where("nombre", "=", strtolower($especialidad))->get();
+                if (count($especialidadBuscada) >= 1) {
+                    $user->especialidades()->attach($especialidadBuscada[0]);
+
+                }
+            }
+
+        }
+
+        return $user;
     }
 }

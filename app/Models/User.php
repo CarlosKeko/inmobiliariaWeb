@@ -75,4 +75,24 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+     //Relación N a M con la tabla idiomas
+     public function idiomas() {
+        return $this->belongsToMany("App\Models\Idioma");
+    }
+    
+    //Relación N a M con la tabla servicios
+    public function servicios() {
+        return $this->belongsToMany("App\Models\Servicio");
+    }
+
+    //Relación N a M con la tabla servicios
+    public function especialidades() {
+        return $this->belongsToMany("App\Models\Especialidad");
+    }
+
+    //Relación 1 a N con la tabla horarios
+    public function horarios() {
+        return $this->hasMany("App\Models\Horario");
+    }
 }
