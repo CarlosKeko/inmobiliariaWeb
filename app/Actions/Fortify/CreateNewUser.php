@@ -24,11 +24,13 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input)
     {
         Validator::make($input, [
+            'profile_photo_path' => ['required', 'image', 'max:1024'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ],[
+            'profile_photo_path' => 'Error en la subida de la imagen, selecciona otra o prueba más tarde',
             'name.required'=>'Name is required',
             'email.required'=>'Email is required',
             'phone.required'=>'Phone is required',

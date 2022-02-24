@@ -18,7 +18,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>

@@ -190,7 +190,10 @@
                     <div class="col-md-5">
                       <div class="form-group">
                         <label for="profile_photo_path">Fotografía del Agente Inmobiliario</label>
-                        <input type="file" class="form-control-file" name="profile_photo_path" id="profile_photo_path" value="{{ old('profile_photo_path') }}">
+                        <input type="file" class="form-control-file" name="profile_photo_path" id="profile_photo_path" value="{{ old('profile_photo_path') }}" accept="image/*">
+                        @error('file')
+                          <small class="text-danger">{{$message}}</small>
+                        @enderror
                       </div>
                       <div class="form-group">
                         <label for="video">Vídeo de presentación</label>

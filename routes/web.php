@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', [WelcomeController::class, 'welcome']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
     return view('dash.index');
